@@ -1,0 +1,986 @@
+//out: ../css/index.css
+
+@import url("base");
+@grey: rgba(175, 175, 175, 0.2);
+@white-font: white;
+@white-background-color: white;
+@black-navbar-body: black;
+@black-content-1: #080808;
+@black-content-2: rgba(30, 30, 30, 0.75);
+@black-footer: #333;
+@red:#eb315a;
+@white-thin-border: 0.025rem solid rgba(255, 255, 255, 0.4);
+
+/* the reason why we declare the font-size at <html> is because we want to produce a 
+responsive page, we will realize this concept by changing all the value with unit "px" 
+with unit "rem" */
+html {
+  font-size: 6px;
+  
+  /* @media can help us detect the width of current screen and automatically change the
+  font size of <html> label because rem will based on the font-size of <html> */
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (min-width: 1152px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1984px) {
+    font-size: 30px;
+  }
+
+  @media (min-width: 2800px) {
+    font-size: 35px;
+  }
+
+  @media (min-width: 3700px) {
+    font-size: 40px;
+  }
+}
+
+body {
+  background-color: @black-navbar-body;
+  padding-top: 2rem;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 2rem;
+    padding-right: 0.75rem;
+    background-color: @black-navbar-body; 
+    border-bottom: @white-thin-border;
+
+    .logo{
+      padding-left: 1rem;
+
+      a {
+        display: inline-block;
+        width: 8.5rem;
+        
+        img { 
+          display: inline-block;
+          height: 2rem;
+          margin-right: 0.125rem;
+        }
+
+        h1 {
+          display: inline-block;
+          color: @white-font;
+          font-weight: 400;
+          font-family: san-serif;
+          line-height: 2rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    .right{
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      
+      ul {
+        display: flex;
+    
+        li {
+            border-right: 0.025rem solid rgba(255, 255, 255, 0.4);
+            height: 2rem;
+
+          a {
+            display: inline-block;
+            padding: 0 1rem;
+            line-height: 2rem;
+            color: @white-font;
+            transition: all .8s;
+            font-size: 0.55rem;
+
+            &.active {
+              color: gold;
+            }
+
+            &:hover {
+              background-image: linear-gradient(
+                to right, 
+                rgb(205, 220, 57), 
+                rgb(255, 152, 0) 25%, 
+                rgb(205, 220, 57) 50%, 
+                rgb(255, 152, 0) 75%, 
+                rgb(205, 220, 57)
+              );
+              background-clip: text;
+              color: transparent;
+              transform: scale(1.4);
+            }
+          }
+
+          &:last-child {
+            border-right: 0;
+          }
+
+          &:hover {
+            background-color: @grey;
+          }
+        }
+      }
+      /* we use @media here to ensure that the options such as "Home", "About", "Services" and "Contact"
+      will disappear when the width of the screen is too small so that the contents in our navbar will 
+      not crush */
+      @media (max-width: 24.8rem) {
+        ul {
+          display: none;
+        }
+      }
+
+      form {
+        align-self: center;
+
+        .form {
+          position: relative;
+          height: 0.75rem;
+          width: 5.75rem;
+
+          input[type="text"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 0.075rem;
+            height: 100%;
+            width: 100%;
+            vertical-align: middle;
+            padding-left: 0.25rem;
+            padding-right: 1rem;
+            font-size: 0.35rem;
+
+            &::placeholder {
+              color: rgba(0,0,0,0.5);
+            }
+          }
+
+          button {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            z-index: 1;
+            transform: translateY(-50%);
+            width: 0.75rem;
+            height: 0.74rem;
+            background-color: lightgrey;
+            border-radius: 0 0.075rem 0.075rem 0;
+            text-align: center;
+            line-height: 0.67rem;
+            cursor: pointer;
+
+            .iconfont {
+              font-size: 0.5rem;
+            }
+          } 
+          /* we use @media here to ensure that our search bar will disappear when the width of the screen
+          is too small so that the contents in our navbar will not crush */
+          @media (max-width: 45rem) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  
+  .container {
+    display: grid;
+    grid-template-rows: 17.5rem minmax(22.5rem, auto) auto;
+    grid-template-columns: minmax(5.25rem, auto) 80% minmax(5.25rem, auto);
+    /* grid-template-areas: 'left-menu header header'
+                            'left-menu content right-menu'
+                            'left-menu footer footer'; */
+
+    @media (max-width: 1200px) {
+      grid-template-rows: 17.5rem minmax(22.5rem, auto) auto;
+      grid-template-columns: 0 100% 0;
+
+      .left-menu {
+        display: none;
+      }
+
+      .right-menu {
+        display: none;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1200px) {
+      grid-template-columns: minmax(5.25rem, auto) 1fr 0;
+
+      .left-menu {
+        display: block;
+      }
+    }
+
+    header.header {
+      grid-area: 1/2/2/-1;
+      display: grid;
+      position: relative;
+      grid-template-rows: 1fr 2fr;
+      grid-template-columns: 5fr 1fr; 
+      background-color: @black-content-2;
+      color: @white-font;
+      padding: 1rem;
+      padding-top: -1.5rem;
+      overflow: hidden;
+      
+      h2 {
+        grid-area: 1/1/2/2;
+        align-content: end;
+        font-size: 2.7rem;
+        background: url(../images/360_F_247228043_eNXkq3rHjZiBsfQXFTHKMjBh9W0Vo4cI.jpg) center/contain;
+        background-clip: text;
+        color: transparent;
+        animation: moveUp 1s infinite alternate forwards;
+
+
+        @keyframes moveUp {
+          to {
+            transform: translateY(-1.25rem);
+          }
+        }
+      }
+      
+      .picture {
+        grid-area: 1/2/-1/-1;
+        width: 15rem;
+        height: 15rem;
+        place-self: center;
+        background: url(../images/personal_photo_white_background.png) no-repeat center/contain;
+      }
+
+      .text {
+        grid-area: 2/1/-1/2;
+        margin-top: -1.9rem;
+        padding-top: 1rem;
+        background: url(../images/411d8e0f45aaebc833a5195b03c62e98.jpg) left top/cover;
+        background-clip: text;
+        color: transparent;
+        border-top: 0.025rem dashed rgba(255, 255, 255, 0.4);
+        text-align: justify;
+        font-size: 1.8rem;
+        animation: moveDown 2.5s forwards;
+
+        @keyframes moveDown {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+            transform: translateY(2.5rem);
+          }
+        }
+
+        span {
+          display: inline-block;
+          margin-top: 2rem;
+          font-size: 0.5rem;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        
+        p {
+          margin-top: 0.4rem;
+          font-size: 1.2rem;
+        }
+
+        em {
+          display: inline-block;
+          margin-top: 0.3rem;
+          font-weight: 300;
+          font-size: 0.9rem;
+          line-height: 1;
+          overflow: hidden;
+        }
+      }
+
+      .star {
+        overflow: hidden;
+
+        img {
+          position: absolute;
+          filter: brightness(1.5) sepia(0.8) hue-rotate(20deg) saturate(1.5) drop-shadow(0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5));
+        }
+        
+        img:nth-child(1) {
+          top: 56%;
+          left: 20%;
+          width: 1.2rem;
+          height: 1.2rem;
+          animation: starglow 1s infinite alternate;
+        }
+        
+        img:nth-child(2) {
+          top: 40%;
+          left: 40%;
+          width: 1.2rem;
+          height: 1.2rem;
+          animation: stardown 1s infinite alternate,
+                     starglow 2s infinite 0.5s alternate,
+                     starFly 17s infinite 25s alternate;
+        }
+        
+        img:nth-child(3) {
+          top: 70%;
+          left: 30%;
+          width: 0.8rem;
+          height: 0.8rem;
+          animation: starglow 3s infinite 0.3s alternate,
+                     starFly 11s infinite 14s alternate;
+        }
+        
+        img:nth-child(4) {
+          top: 56%;
+          left: 50%;
+          width: 0.8rem;
+          height: 0.8rem;
+          animation: starFly 13s infinite 5s alternate,
+                    starglow 4s infinite 1s alternate;
+        }
+        
+        img:nth-child(5) {
+          top: 90%;
+          left: 64%;
+          width: 1.6rem;
+          height: 1.6rem;          
+          animation: starFly 10s infinite alternate,
+                     starglow 2s infinite alternate;
+        }
+        
+        img:nth-child(6) {
+          top: 15%;
+          left: 94%;
+          width: 1.3rem;
+          height: 1.3rem;
+          animation: stardown 2s infinite 0.6s alternate,
+                     starglow 1s infinite 0.5s alternate;
+        }
+        
+        img:nth-child(7) {
+          top: 10%;
+          left: 10%;
+          width: 0.8rem;
+          height: 0.8rem;
+          animation: starglow 3s infinite 0.9s alternate;
+
+        }
+        
+        img:nth-child(8) {
+          top: 86%;
+          left: 12%;
+          width: 0.8rem;
+          height: 0.8rem  ;
+          animation: stardown 3s infinite 0.9s alternate,
+                     starglow 2.5s infinite 0.9s alternate;
+        }
+        
+        img:nth-child(9) {
+          top: 85%;
+          left: 78%;
+          width: 0.8rem;
+          height: 0.8rem;
+          animation: starExpand 3s infinite alternate,
+                     starglow 1s infinite alternate;
+        }
+        
+        img:nth-child(10) {
+          top: 15%;
+          left: 64%;
+          width: 1.6rem;
+          height: 1.6rem;
+          animation: starExpand 2s infinite 0.6s alternate,
+                     starglow 3s infinite 1.5s alternate;
+        }
+
+        @keyframes starglow {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes stardown {
+          to {
+            transform: translateY(1.25rem);
+          }
+        }
+
+        @keyframes starFly {
+          to {
+            transform: rotate(-200deg) translate(10rem, 5rem);
+          }
+        }
+
+        @keyframes starExpand {
+          to {
+            transform: scale(2);
+          }
+        }
+      }
+    }
+
+    nav.left-menu {
+      grid-area: 1/1/-1/2;
+      position: relative;
+      background-color: @red;
+      padding: 1rem 0.5rem;
+      color: @white-font; 
+        
+      .top {
+        position: sticky;
+        top: 3rem;
+        min-height: 17.5rem;
+        width: 100%;
+
+        h1 {
+          margin-bottom: 0.875rem;
+          font-size: 0.9rem;
+          cursor: pointer;
+
+          i {
+            font-size: 0.9rem;
+          }
+        }
+
+        .nav-links {
+          position: relative;
+
+          li {
+            margin-bottom: 0.375rem;
+
+            a {
+              position: relative;
+              display: flex;  
+              padding: 0.375rem 0.6rem 0.375rem 1.375rem;
+              font-size: 0.55rem;
+              color: @white-font;
+              align-items: center;
+              transition: all 0.6s;
+
+              i {
+                position: absolute;
+                left: 0.5rem;
+                top: 0.4rem;
+                font-size: 0.5rem;
+              }
+              
+              &:hover {
+                background-color: @white-background-color;
+                color: @red;
+                box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.4);
+                border-radius: 0.15rem;
+              }
+            } 
+          }
+        }
+      }
+
+      .bottom {
+          position: absolute;
+          left: 0;
+          bottom: 0.5rem;
+          width: 100%;
+          padding: 0.25rem 0.625rem 0;
+          
+        ul {
+          border-top: @white-thin-border;
+          padding-top: 0.25rem;
+          
+          li {
+            margin-bottom: 0.25rem;
+            
+            a {
+              display: flex;  
+              align-items: center;
+              height: 1.25rem;
+              padding-left: 0.5rem;
+              font-size: 0.55rem;
+              color: @white-font;
+              transition: all 0.6s;
+
+              i {
+                margin-right: 0.5rem;
+                font-size: 0.55rem;
+              }
+
+              &:hover {
+                background-color: @white-background-color;
+                color: #830213;
+                border-radius: 0.15rem;
+                box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.4);
+              }
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  
+    nav.right-menu {
+      grid-area: 2/3/3/-1;
+      padding-top: 6.25rem;
+  
+      ul {
+        position: sticky;
+        top: 1.25rem;
+        padding: 1.25rem 0;
+        background-color:	@red;
+        border-radius: 0.175rem;
+        
+        li {
+          padding: 0 0.5rem;
+          min-width: 5.7rem;
+
+          a {
+            display: block;
+            height: 2rem;
+            line-height: 2rem;
+            border-bottom: white 0.025rem solid;
+            color: @white-font;
+            font-size: 0.5rem;
+            transition: all 0.3s;
+
+            i { 
+              margin-right: 0.5rem;
+              transition: all 0.5s;
+              font-size: 0.5rem;
+            }
+          }   
+
+          &:last-child a {
+            border-bottom: 0;
+          }
+
+          a:hover{
+            color: @white-font;
+            font-size: 0.63rem;
+
+            i {
+              font-size: 0.64rem;
+            }
+          }
+        }
+      }
+    }
+    
+    main.content {
+      grid-area: 2/2/3/3;
+      // border-right: white solid 1px;
+
+      .biography {
+        display: flex;
+        justify-content: center;
+        padding: 0 3.75rem;
+        background-color: @black-content-1;
+        background-image: url(../images/light-yellow-gradient-banner-vector-260nw-1609027396.webp);
+        background-clip: text;
+        color: transparent;
+
+        /* we use @media here to ensure that the picture will move up and the text will move to down 
+        when the width of the screen is too small so that the content in our biography will not crush */
+        @media (max-width: 140rem) {
+          flex-direction: column;
+        }
+
+        .left {
+          padding: 2.5rem;
+          align-self: center;
+          text-align: right;
+
+          img {
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            border: white solid 0.15rem;  
+          }
+        }
+
+        .right {
+          flex: 1;
+          padding: 1.8rem 0;
+          font-size: 1rem;
+
+          #biography {
+            text-align: left;
+            font-size: 3.5rem;
+          }
+
+          p {
+            padding-top: 0.7rem;
+            line-height: 1.75;
+            text-align: justify;
+
+            a {
+              color:@red;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+
+          .bio {
+            padding-top: 0.75rem;
+            font-size: 0.85rem;
+
+            .bio-list {
+              display: flex;
+              padding: 0.25rem 0;
+
+              .bio-title {
+                min-width: 3.5rem;
+                font-weight: 700;
+              }
+
+              .bio-desc {
+                margin-bottom: 0;
+                padding-left: 0.375rem;
+                font-weight: 700;
+
+                &::before {
+                  content: ":";
+                  padding-right: 0.25rem;
+                }
+              }
+            }
+          } 
+        }
+      }
+      
+      .skill {
+        display: flex;
+        justify-content: space-between;
+        padding: 3.75rem 3.75rem;
+        background-color: @black-content-2;
+        font-size: 1rem;
+
+         /* we use @media here to ensure that the text will move up and the progress bar will move to down 
+        when the width of the screen is too small so that the content in our skill will not crush */
+        @media (max-width: 140rem) {
+            flex-direction: column;
+        }
+
+        .left {
+          flex: 1;
+          background: url(../images/light-green-blur-drawing-vector.jpg) center bottom/contain;
+          background-clip: text;
+          color: transparent;
+
+          #skill {
+            font-size: 3.5rem;
+          }
+
+          p {
+            padding-top: 0.7rem;
+            line-height: 1.75;
+            text-align: justify;
+
+            a {
+              // color:rgba(0, 0, 255, 1);
+              color: #00bcd4;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .right {
+          align-self: center;
+          display: flex;
+          padding-left: 3.75rem;
+          color: @white-font;
+
+          .skills h2 {
+            margin-top: 0.75rem;
+            margin-bottom: 0.375rem;
+            font-weight: 400;
+            letter-spacing: 0.025rem;
+            font-size: 0.625rem;
+          }
+          
+          .progress-bar {
+            background: #959595;
+            width: 20rem;
+            height: 0.25rem;
+            border-radius: 0.125rem;
+
+            div {
+              height: 0.25rem;
+              border-radius: 0.125rem;
+              width: 0;
+              text-align: center;
+
+              span {
+                display: flex;
+                justify-content: center;
+                float: right;
+                margin-top: -0.375rem;
+                margin-right: -0.875rem;
+                padding-top: 0.275rem;
+                height: 1rem;
+                width: 1rem;
+                background-color: @black-content-2;
+                color: @white-font;
+                font-size: 0.4rem;
+                border-radius: 50%;
+              }
+            }
+
+            .html {
+              background: #e91e63;
+              animation: html 4s linear forwards;
+
+              span {
+                border: 0.025rem solid #e91e63;
+              }
+            }
+
+            .css {
+              background: #cddc39;
+              animation: css 4s linear forwards;
+              span {
+                border: 0.025rem solid #cddc39;
+              }
+            }
+
+            .javascript {
+              background: #00bcd4;
+              animation: javascript 4s linear forwards;
+              span {
+                border: 0.025rem solid #00bcd4;
+              }
+            }
+
+            .php {
+              background: #ffeb3b;
+              animation: php 3s linear forwards;
+              span {
+                border: 0.025rem solid #ffeb3b;
+              }
+            }
+
+            .java {
+              background: #9c27b0;
+              animation: java 3s linear forwards;
+              span {
+                border: 0.025rem solid #9c27b0;
+              }
+            }
+
+            @keyframes html {
+              100% {
+                width: 86%;
+              }
+            }
+
+            @keyframes css {
+              100% {
+                width: 74%;
+              }
+            }
+
+            @keyframes javascript {
+              100% {
+                width: 65%;
+              }
+            }
+
+            @keyframes php {
+              100% {
+                width: 86%;
+              }
+            }
+
+            @keyframes java {
+              100% {
+                width: 90%;
+              }
+            }
+          }
+        }
+      }
+
+      .achievement {
+        width: 100%;
+        padding: 3rem 3rem;
+        background-color: @black-content-1;
+        font-size: 1rem;
+        background: url(../images/purple-gradient-background-2400-x-2000-84i56bd29161ta0o.jpg) center bottom;
+        background-clip: text;
+        color: transparent;
+        
+        #achievement {
+          text-align: center;
+          font-size: 3.5rem;
+        }
+
+        .school {
+          display: flex;
+          padding: 1.25rem 2.5rem;
+
+           /* we use @media here to ensure that the boxes will not crush together and arrange vertically
+           when the width of the screen is too small so that the content in our achievement will not crush */
+          @media (max-height: 140rem) {
+            flex-direction: column;
+          }
+
+          .pre-u,
+          .university {
+            position: relative;
+            flex: 1;
+            border-radius: 0.25rem;
+            margin: 1.25rem;
+            padding: 0.75rem 1.25rem;
+            border: white solid 0.025rem;
+            background-color: rgb(31, 31, 31);
+            color: @white-font;
+
+            img {
+              position: absolute;
+              right: 2rem;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 9rem;
+              height: 9rem;
+              margin-left: 0.375rem;
+              transition: all .8s;
+            }
+
+            h2 {
+              font-size: 1.8rem;
+              margin-bottom: 1rem;
+              transition: all .7s;
+            }
+            
+            p {
+              font-size: 0.85rem;
+              margin: 0.8rem 0;
+              transition: all .7s;
+
+              &.cgpa {
+                font-size: 1.1rem;
+                margin: 2.8rem 0 0.8rem;
+                transition: all .8s;
+              }
+            }
+          }
+
+          .pre-u:hover,
+          .university:hover {
+            border:#00bcd4 solid 0.125rem;
+            box-shadow: 0.375rem 0.375rem #00bcd4;
+            background: url(../images/360_F_129277373_HOQaWFD8bupLUvqF6NWg4dkSkR80HPzO.jpg) no-repeat right center/cover;
+            color: #3f37c9;
+
+            img {
+              transform: translateY(-50%) scale(1.2);
+            }
+
+            .cgpa {
+              color: @red;
+              font-weight: 700;
+              transform-origin: left center;
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+      
+    footer.footer {
+      grid-area: 3/1/-1/-1;
+      background-color: @black-footer;
+      padding: 0.5rem;
+      text-align: center;
+      color: @white-font;
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 30rem;
+        margin: 0 auto;
+
+        .contact, 
+        .social {
+            flex: 1;
+        }
+
+        .contact h3, 
+        .social h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact a {
+            margin: 0;
+            color: @white-font;
+            font-size: 0.75rem;
+            transition: all .5s;
+
+            &:hover {
+              text-decoration: underline;
+              color: @red;
+            }
+        }
+
+        .social ul {
+          margin-top: -0.125rem;
+
+          li {
+            display: inline;
+            margin-right: 0.25rem;
+            font-size: 0.75rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+              color: @white-font;
+              transition: all .5s;
+
+              &:hover {
+                text-decoration: underline;
+                color: @red;
+              }
+            }
+          }
+        }
+      }
+
+      .legal {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.8rem;
+
+        a {
+          color: @white-font;
+          text-decoration: none;
+          transition: all .5s;
+
+          &:hover {
+            text-decoration: underline;
+            color: @red;
+          }
+        }
+      }
+    }
+  }
+}

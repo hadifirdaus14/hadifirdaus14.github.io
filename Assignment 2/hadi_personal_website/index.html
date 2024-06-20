@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Website Landing Page</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./font/iconfont/iconfont.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <script src="https://kit.fontawesome.com/9e149c5dd4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- we use position fixed for this navbar so that this navbar can remained at the top of our screen
+  even though we scroll down the screen, each of the option we use <a> element so that it can be 
+  directed to another website-->
+  <div class="navbar">
+    <div class="logo">
+      <!-- The website will bring the user to the official website after click the logo -->
+      <a href="#">
+        <img src="./images/logoo.png" alt="">
+        <!-- only the logo can use <h1> element and this type of coding can improve the Search
+          Engine Optimization (SEO) -->
+        <h1>THE WEBSTER</h1>
+      </a>
+    </div>
+    <div class="right">
+      <ul>  
+        <!-- each option is wrapped by <a> element so it can bring us to their respective website -->
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <form action="">
+        <!-- we use <form> to wrap the input and button together so that these two elements can
+          work together and help user to find the elements related to the keyword -->
+        <div class="form">
+          <input type="text" placeholder="Search any keyword">
+          <button type="submit">
+            <i class="iconfont icon-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <!-- we use background-clip: text; color; transparent; and bgi: url(...); together to make
+      the color of our text is beautiful and gradient -->
+      <h2>Welcome to My Personal Website!</h2>
+      
+      <div class="text">
+        My name is Hadi Firdaus Bin Hassim
+        <br>
+        <span>About me</span>
+        <p>UTM Software Engineering Year 2 Student</p>
+        <em>
+          With a passion for problem-solving and an innate drive for innovation, I'm poised to revolutionize the tech landscape and make a lasting impact.
+        </em>
+      </div>
+      <!-- these stars show our creativity and each star was assigned different animation css property -->
+      <div class="star">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+        <img src="./images/gold-star-glitter-on-transparent-background-free-png.webp" alt="">
+      </div>
+    </header>
+
+    <nav class="left-menu">
+        <div class="top">
+          <!-- We use position: sticky; to ensure the elements in the class "top" can still exist
+          in our screen even though we already scroll down the screen. This can increase the user
+          experience because they can directly select the <a> even though they already scroll down
+          the screen-->
+          <h1><i class="fa-solid fa-bars">&nbsp&nbsp</i>Menu</h1>
+          <ul class="nav-links">
+              <li><a href="#"><i class="fa-solid fa-briefcase"></i>Portfolio</a></li>
+              <li><a href="#"><i class="fa-brands fa-blogger-b"></i>Blog</a></li>
+              <li><a href="#"><i class="fa-solid fa-book-open"></i>Resources</a></li>
+              <li><a href="#"><i class="fa-solid fa-file"></i>Resume/CV</a></li>
+              <li><a href="#"><i class="fa-solid fa-circle-question"></i>Help</a></li>
+          </ul>
+        </div>
+        <div class="bottom">
+          <!-- we use position: absolute; at here to ensure the bottom part will only show when
+          the user scroll until the most bottom part -->
+          <ul>
+            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
+            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          </ul>
+        </div>
+    </nav>
+
+    <nav class="right-menu">
+        <ul class="nav-links">
+          <!-- We use position: sticky; to ensure the elements in the class "top" can still exist
+          in our screen even though we already scroll down the screen. This can increase the user
+          experience because they can directly select the <a> even though they already scroll down
+          the screen-->
+            <li><a href="#biographyy"><i class="fa-solid fa-address-card"></i>Biography</a></li>
+            <li><a href="#skills"><i class="fa-solid fa-laptop-code"></i>Skills</a></li>
+            <li><a href="#achievement"><i class="fa-solid fa-trophy"></i>Achievement</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+    <!-- This part is the biography, which show our personal information -->
+      <div class="biography" id="biographyy">
+        <div class="left">
+          <img src="./images/Hadi_photo.jpg" alt="">
+        </div>
+        <div class="right">
+          <h2 id="biography">Biography</h2>
+          <p>
+            Hi! My name is Hadi Firdaus Bin Hassim, a student from <a href="https://www.utm.my/">University of Technology Malaysia</a> who studies in Software Engineering. During my studies, I developed an interest in Web Programming and gained practical experience through activities such as Hackathon.
+            I'm now looking to work for the big company like Google, Microsoft, Tesla and more where I can apply my knowledge and skills to real-world challenges. Feel free to contact me through this site for collaboration or career opportunities!
+          </p>
+          <div class="bio">
+            <div class="bio-list">
+              <div class="bio-title">Birthday</div>
+              <div class="bio-desc">9th May 2003</div>
+            </div>
+            <div class="bio-list">
+              <div class="bio-title">Age</div>
+              <div class="bio-desc">21</div>
+            </div>
+            <div class="bio-list">
+              <div class="bio-title">Email</div>
+              <div class="bio-desc">hadifirdaus03@gmail.com</div>
+            </div>
+            <div class="bio-list">
+              <div class="bio-title">Phone</div>
+              <div class="bio-desc">019-3502300</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+    <!-- This part is the skill, which show the programming languages we learnt and percentage of
+    proficiency in each programming language, we also use the animation property at this part to
+    make sure our website is more creative and comfortable -->
+      <div class="skill" id="skills">
+        <div class="left">
+          <h2 id="skill">My Skills</h2>
+          <p>
+            I am proficient in <a href="">C++</a>, <a href="">HTML</a>, <a href="">CSS</a>, <a href="">Javascript</a>, 
+            <a href="">C</a> and so on, which equip me to handle complex technical challenges. My background in 
+            strategic planning and data analysis allows me to drive projects that meet and exceed predetermined goals. 
+            Additionally, my strong communication and adaptability skills ensure effective teamwork and seamless 
+            integration with evolving technologies.
+          </p>
+        </div>
+
+        <div class="right">
+          <div class="skills">
+            <h2>HTML</h2>
+            <div class="progress-bar">
+              <div class="html"><span>70</span></div>
+            </div>
+            <h2>CSS</h2>
+            <div class="progress-bar">
+              <div class="css"><span>60</span></div>
+            </div>
+            <h2>Javascript</h2>
+            <div class="progress-bar">
+              <div class="javascript"><span>30</span></div>
+            </div>
+            <h2>C++</h2>
+            <div class="progress-bar">
+              <div class="php"><span>85</span></div>
+            </div>
+            <h2>C</h2>
+            <div class="progress-bar">
+              <div class="java"><span>90</span></div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- This part is the education, which show our pre-u we studied before and current university
+      and the CGPA we achieved-->
+      <div class="achievement" id="achievementt">
+        <h2 id="achievement">My Achievements</h2>
+
+        <div class="school">
+          <a href="#" class="pre-u">
+            <img src="./uploads/UiTM.jpeg" alt="">
+            <h2>Major in Engineering</h2>
+            <p>University of Technology MARA,</p>
+            <p>Malaysia.</p>
+            <p>2021-2022</p>
+            <p class="cgpa">CGPA: 4.0/4.0</p>
+          </a>
+
+          <a href="#" class="university">
+            <img src="./uploads/utm logo.png" alt="">
+            <h2>BSc in Software Engineering</h2>
+            <p class="name">University of Technology,</p>
+            <p>Malaysia.</p>
+            <p>2023-present</p>
+            <p class="cgpa">CGPA: 3.58/4.0</p>
+          </a>
+        </div>
+        
+      </div>    
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="contact">
+            <h3>Contact</h3>
+            <a href="#">hadi.firdaus@graduate.utm.my</a>
+        </div>
+        <div class="social">
+            <h3>Social</h3>
+            <ul>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+      </div>
+    <div class="legal">
+        <p>
+          Copyright &copy; 2024 Hadi Firdaus Hassim.
+          <br>
+          All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+        </p>
+    </div>
+    </footer>
+  </div>
+</body>
+</html>

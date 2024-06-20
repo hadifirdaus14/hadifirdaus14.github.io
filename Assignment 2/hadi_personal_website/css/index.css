@@ -1,0 +1,888 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v27/ieVo2ZhZI2eCN5jzbjEETS9weq8-_d6T_POl0fRJeyWyosBO5Xk.ttf) format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+}
+body {
+  font: 16px/1 "Roboto" "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+}
+b,
+strong {
+  font-weight: 400;
+}
+i,
+em {
+  font-style: normal;
+}
+u,
+ins {
+  text-decoration: none;
+}
+img {
+  vertical-align: middle;
+}
+input,
+button {
+  border: 0;
+  outline: 0;
+  color: #333;
+}
+/* the reason why we declare the font-size at <html> is because we want to produce a 
+responsive page, we will realize this concept by changing all the value with unit "px" 
+with unit "rem" */
+html {
+  font-size: 6px;
+  /* @media can help us detect the width of current screen and automatically change the
+  font size of <html> label because rem will based on the font-size of <html> */
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1152px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1984px) {
+  html {
+    font-size: 30px;
+  }
+}
+@media (min-width: 2800px) {
+  html {
+    font-size: 35px;
+  }
+}
+@media (min-width: 3700px) {
+  html {
+    font-size: 40px;
+  }
+}
+body {
+  background-color: black;
+  padding-top: 2rem;
+}
+body .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 2rem;
+  padding-right: 0.75rem;
+  background-color: black;
+  border-bottom: 0.025rem solid rgba(255, 255, 255, 0.4);
+}
+body .navbar .logo {
+  padding-left: 1rem;
+}
+body .navbar .logo a {
+  display: inline-block;
+  width: 8.5rem;
+}
+body .navbar .logo a img {
+  display: inline-block;
+  height: 2rem;
+  margin-right: 0.125rem;
+}
+body .navbar .logo a h1 {
+  display: inline-block;
+  color: white;
+  font-weight: 400;
+  font-family: san-serif;
+  line-height: 2rem;
+  font-size: 0.75rem;
+}
+body .navbar .right {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  /* we use @media here to ensure that the options such as "Home", "About", "Services" and "Contact"
+      will disappear when the width of the screen is too small so that the contents in our navbar will 
+      not crush */
+}
+body .navbar .right ul {
+  display: flex;
+}
+body .navbar .right ul li {
+  border-right: 0.025rem solid rgba(255, 255, 255, 0.4);
+  height: 2rem;
+}
+body .navbar .right ul li a {
+  display: inline-block;
+  padding: 0 1rem;
+  line-height: 2rem;
+  color: white;
+  transition: all 0.8s;
+  font-size: 0.55rem;
+}
+body .navbar .right ul li a.active {
+  color: gold;
+}
+body .navbar .right ul li a:hover {
+  background-image: linear-gradient(to right, #cddc39, #ff9800 25%, #cddc39 50%, #ff9800 75%, #cddc39);
+  background-clip: text;
+  color: transparent;
+  transform: scale(1.4);
+}
+body .navbar .right ul li:last-child {
+  border-right: 0;
+}
+body .navbar .right ul li:hover {
+  background-color: rgba(175, 175, 175, 0.2);
+}
+@media (max-width: 24.8rem) {
+  body .navbar .right ul {
+    display: none;
+  }
+}
+body .navbar .right form {
+  align-self: center;
+}
+body .navbar .right form .form {
+  position: relative;
+  height: 0.75rem;
+  width: 5.75rem;
+  /* we use @media here to ensure that our search bar will disappear when the width of the screen
+          is too small so that the contents in our navbar will not crush */
+}
+body .navbar .right form .form input[type="text"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 0.075rem;
+  height: 100%;
+  width: 100%;
+  vertical-align: middle;
+  padding-left: 0.25rem;
+  padding-right: 1rem;
+  font-size: 0.35rem;
+}
+body .navbar .right form .form input[type="text"]::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+body .navbar .right form .form button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+  width: 0.75rem;
+  height: 0.74rem;
+  background-color: lightgrey;
+  border-radius: 0 0.075rem 0.075rem 0;
+  text-align: center;
+  line-height: 0.67rem;
+  cursor: pointer;
+}
+body .navbar .right form .form button .iconfont {
+  font-size: 0.5rem;
+}
+@media (max-width: 45rem) {
+  body .navbar .right form .form {
+    display: none;
+  }
+}
+body .container {
+  display: grid;
+  grid-template-rows: 17.5rem minmax(22.5rem, auto) auto;
+  grid-template-columns: minmax(5.25rem, auto) 80% minmax(5.25rem, auto);
+  /* grid-template-areas: 'left-menu header header'
+                            'left-menu content right-menu'
+                            'left-menu footer footer'; */
+}
+@media (max-width: 1200px) {
+  body .container {
+    grid-template-rows: 17.5rem minmax(22.5rem, auto) auto;
+    grid-template-columns: 0 100% 0;
+  }
+  body .container .left-menu {
+    display: none;
+  }
+  body .container .right-menu {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  body .container {
+    grid-template-columns: minmax(5.25rem, auto) 1fr 0;
+  }
+  body .container .left-menu {
+    display: block;
+  }
+}
+body .container header.header {
+  grid-area: 1/2/2/-1;
+  display: grid;
+  position: relative;
+  grid-template-rows: 1fr 2fr;
+  grid-template-columns: 5fr 1fr;
+  background-color: rgba(30, 30, 30, 0.75);
+  color: white;
+  padding: 1rem;
+  padding-top: -1.5rem;
+  overflow: hidden;
+}
+body .container header.header h2 {
+  grid-area: 1/1/2/2;
+  align-content: end;
+  font-size: 2.7rem;
+  background: url(../images/360_F_247228043_eNXkq3rHjZiBsfQXFTHKMjBh9W0Vo4cI.jpg) center / contain;
+  background-clip: text;
+  color: transparent;
+  animation: moveUp 1s infinite alternate forwards;
+}
+@keyframes moveUp {
+  to {
+    transform: translateY(-1.25rem);
+  }
+}
+body .container header.header .picture {
+  grid-area: 1/2/-1/-1;
+  width: 15rem;
+  height: 15rem;
+  place-self: center;
+  background: url(../images/personal_photo_white_background.png) no-repeat center / contain;
+}
+body .container header.header .text {
+  grid-area: 2/1/-1/2;
+  margin-top: -1.9rem;
+  padding-top: 1rem;
+  background: url(../images/411d8e0f45aaebc833a5195b03c62e98.jpg) left top / cover;
+  background-clip: text;
+  color: transparent;
+  border-top: 0.025rem dashed rgba(255, 255, 255, 0.4);
+  text-align: justify;
+  font-size: 1.8rem;
+  animation: moveDown 2.5s forwards;
+}
+@keyframes moveDown {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(2.5rem);
+  }
+}
+body .container header.header .text span {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+body .container header.header .text p {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+}
+body .container header.header .text em {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1;
+  overflow: hidden;
+}
+body .container header.header .star {
+  overflow: hidden;
+}
+body .container header.header .star img {
+  position: absolute;
+  filter: brightness(1.5) sepia(0.8) hue-rotate(20deg) saturate(1.5) drop-shadow(0.05rem 0.05rem 0.1rem rgba(0, 0, 0, 0.5));
+}
+body .container header.header .star img:nth-child(1) {
+  top: 56%;
+  left: 20%;
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: starglow 1s infinite alternate;
+}
+body .container header.header .star img:nth-child(2) {
+  top: 40%;
+  left: 40%;
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: stardown 1s infinite alternate, starglow 2s infinite 0.5s alternate, starFly 17s infinite 25s alternate;
+}
+body .container header.header .star img:nth-child(3) {
+  top: 70%;
+  left: 30%;
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: starglow 3s infinite 0.3s alternate, starFly 11s infinite 14s alternate;
+}
+body .container header.header .star img:nth-child(4) {
+  top: 56%;
+  left: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: starFly 13s infinite 5s alternate,
+                    starglow 4s infinite 1s alternate;
+}
+body .container header.header .star img:nth-child(5) {
+  top: 90%;
+  left: 64%;
+  width: 1.6rem;
+  height: 1.6rem;
+  animation: starFly 10s infinite alternate,
+                     starglow 2s infinite alternate;
+}
+body .container header.header .star img:nth-child(6) {
+  top: 15%;
+  left: 94%;
+  width: 1.3rem;
+  height: 1.3rem;
+  animation: stardown 2s infinite 0.6s alternate, starglow 1s infinite 0.5s alternate;
+}
+body .container header.header .star img:nth-child(7) {
+  top: 10%;
+  left: 10%;
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: starglow 3s infinite 0.9s alternate;
+}
+body .container header.header .star img:nth-child(8) {
+  top: 86%;
+  left: 12%;
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: stardown 3s infinite 0.9s alternate, starglow 2.5s infinite 0.9s alternate;
+}
+body .container header.header .star img:nth-child(9) {
+  top: 85%;
+  left: 78%;
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: starExpand 3s infinite alternate,
+                     starglow 1s infinite alternate;
+}
+body .container header.header .star img:nth-child(10) {
+  top: 15%;
+  left: 64%;
+  width: 1.6rem;
+  height: 1.6rem;
+  animation: starExpand 2s infinite 0.6s alternate, starglow 3s infinite 1.5s alternate;
+}
+@keyframes starglow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes stardown {
+  to {
+    transform: translateY(1.25rem);
+  }
+}
+@keyframes starFly {
+  to {
+    transform: rotate(-200deg) translate(10rem, 5rem);
+  }
+}
+@keyframes starExpand {
+  to {
+    transform: scale(2);
+  }
+}
+body .container nav.left-menu {
+  grid-area: 1/1/-1/2;
+  position: relative;
+  background-color: #eb315a;
+  padding: 1rem 0.5rem;
+  color: white;
+}
+body .container nav.left-menu .top {
+  position: sticky;
+  top: 3rem;
+  min-height: 17.5rem;
+  width: 100%;
+}
+body .container nav.left-menu .top h1 {
+  margin-bottom: 0.875rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+body .container nav.left-menu .top h1 i {
+  font-size: 0.9rem;
+}
+body .container nav.left-menu .top .nav-links {
+  position: relative;
+}
+body .container nav.left-menu .top .nav-links li {
+  margin-bottom: 0.375rem;
+}
+body .container nav.left-menu .top .nav-links li a {
+  position: relative;
+  display: flex;
+  padding: 0.375rem 0.6rem 0.375rem 1.375rem;
+  font-size: 0.55rem;
+  color: white;
+  align-items: center;
+  transition: all 0.6s;
+}
+body .container nav.left-menu .top .nav-links li a i {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.4rem;
+  font-size: 0.5rem;
+}
+body .container nav.left-menu .top .nav-links li a:hover {
+  background-color: white;
+  color: #eb315a;
+  box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.4);
+  border-radius: 0.15rem;
+}
+body .container nav.left-menu .bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+  width: 100%;
+  padding: 0.25rem 0.625rem 0;
+}
+body .container nav.left-menu .bottom ul {
+  border-top: 0.025rem solid rgba(255, 255, 255, 0.4);
+  padding-top: 0.25rem;
+}
+body .container nav.left-menu .bottom ul li {
+  margin-bottom: 0.25rem;
+}
+body .container nav.left-menu .bottom ul li a {
+  display: flex;
+  align-items: center;
+  height: 1.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.55rem;
+  color: white;
+  transition: all 0.6s;
+}
+body .container nav.left-menu .bottom ul li a i {
+  margin-right: 0.5rem;
+  font-size: 0.55rem;
+}
+body .container nav.left-menu .bottom ul li a:hover {
+  background-color: white;
+  color: #830213;
+  border-radius: 0.15rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.4);
+}
+body .container nav.left-menu .bottom ul li:last-child {
+  margin-bottom: 0;
+}
+body .container nav.right-menu {
+  grid-area: 2/3/3/-1;
+  padding-top: 6.25rem;
+}
+body .container nav.right-menu ul {
+  position: sticky;
+  top: 1.25rem;
+  padding: 1.25rem 0;
+  background-color: #eb315a;
+  border-radius: 0.175rem;
+}
+body .container nav.right-menu ul li {
+  padding: 0 0.5rem;
+  min-width: 5.7rem;
+}
+body .container nav.right-menu ul li a {
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  border-bottom: white 0.025rem solid;
+  color: white;
+  font-size: 0.5rem;
+  transition: all 0.3s;
+}
+body .container nav.right-menu ul li a i {
+  margin-right: 0.5rem;
+  transition: all 0.5s;
+  font-size: 0.5rem;
+}
+body .container nav.right-menu ul li:last-child a {
+  border-bottom: 0;
+}
+body .container nav.right-menu ul li a:hover {
+  color: white;
+  font-size: 0.63rem;
+}
+body .container nav.right-menu ul li a:hover i {
+  font-size: 0.64rem;
+}
+body .container main.content {
+  grid-area: 2/2/3/3;
+}
+body .container main.content .biography {
+  display: flex;
+  justify-content: center;
+  padding: 0 3.75rem;
+  background-color: #080808;
+  background-image: url(../images/light-yellow-gradient-banner-vector-260nw-1609027396.webp);
+  background-clip: text;
+  color: transparent;
+  /* we use @media here to ensure that the picture will move up and the text will move to down 
+        when the width of the screen is too small so that the content in our biography will not crush */
+}
+@media (max-width: 140rem) {
+  body .container main.content .biography {
+    flex-direction: column;
+  }
+}
+body .container main.content .biography .left {
+  padding: 2.5rem;
+  align-self: center;
+  text-align: right;
+}
+body .container main.content .biography .left img {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  border: white solid 0.15rem;
+}
+body .container main.content .biography .right {
+  flex: 1;
+  padding: 1.8rem 0;
+  font-size: 1rem;
+}
+body .container main.content .biography .right #biography {
+  text-align: left;
+  font-size: 3.5rem;
+}
+body .container main.content .biography .right p {
+  padding-top: 0.7rem;
+  line-height: 1.75;
+  text-align: justify;
+}
+body .container main.content .biography .right p a {
+  color: #eb315a;
+}
+body .container main.content .biography .right p a:hover {
+  text-decoration: underline;
+}
+body .container main.content .biography .right .bio {
+  padding-top: 0.75rem;
+  font-size: 0.85rem;
+}
+body .container main.content .biography .right .bio .bio-list {
+  display: flex;
+  padding: 0.25rem 0;
+}
+body .container main.content .biography .right .bio .bio-list .bio-title {
+  min-width: 3.5rem;
+  font-weight: 700;
+}
+body .container main.content .biography .right .bio .bio-list .bio-desc {
+  margin-bottom: 0;
+  padding-left: 0.375rem;
+  font-weight: 700;
+}
+body .container main.content .biography .right .bio .bio-list .bio-desc::before {
+  content: ":";
+  padding-right: 0.25rem;
+}
+body .container main.content .skill {
+  display: flex;
+  justify-content: space-between;
+  padding: 3.75rem 3.75rem;
+  background-color: rgba(30, 30, 30, 0.75);
+  font-size: 1rem;
+  /* we use @media here to ensure that the text will move up and the progress bar will move to down 
+        when the width of the screen is too small so that the content in our skill will not crush */
+}
+@media (max-width: 140rem) {
+  body .container main.content .skill {
+    flex-direction: column;
+  }
+}
+body .container main.content .skill .left {
+  flex: 1;
+  background: url(../images/light-green-blur-drawing-vector.jpg) center bottom / contain;
+  background-clip: text;
+  color: transparent;
+}
+body .container main.content .skill .left #skill {
+  font-size: 3.5rem;
+}
+body .container main.content .skill .left p {
+  padding-top: 0.7rem;
+  line-height: 1.75;
+  text-align: justify;
+}
+body .container main.content .skill .left p a {
+  color: #00bcd4;
+}
+body .container main.content .skill .left p a:hover {
+  text-decoration: underline;
+}
+body .container main.content .skill .right {
+  align-self: center;
+  display: flex;
+  padding-left: 3.75rem;
+  color: white;
+}
+body .container main.content .skill .right .skills h2 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+  font-weight: 400;
+  letter-spacing: 0.025rem;
+  font-size: 0.625rem;
+}
+body .container main.content .skill .right .progress-bar {
+  background: #959595;
+  width: 20rem;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+}
+body .container main.content .skill .right .progress-bar div {
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  width: 0;
+  text-align: center;
+}
+body .container main.content .skill .right .progress-bar div span {
+  display: flex;
+  justify-content: center;
+  float: right;
+  margin-top: -0.375rem;
+  margin-right: -0.875rem;
+  padding-top: 0.275rem;
+  height: 1rem;
+  width: 1rem;
+  background-color: rgba(30, 30, 30, 0.75);
+  color: white;
+  font-size: 0.4rem;
+  border-radius: 50%;
+}
+body .container main.content .skill .right .progress-bar .html {
+  background: #e91e63;
+  animation: html 4s linear forwards;
+}
+body .container main.content .skill .right .progress-bar .html span {
+  border: 0.025rem solid #e91e63;
+}
+body .container main.content .skill .right .progress-bar .css {
+  background: #cddc39;
+  animation: css 4s linear forwards;
+}
+body .container main.content .skill .right .progress-bar .css span {
+  border: 0.025rem solid #cddc39;
+}
+body .container main.content .skill .right .progress-bar .javascript {
+  background: #00bcd4;
+  animation: javascript 4s linear forwards;
+}
+body .container main.content .skill .right .progress-bar .javascript span {
+  border: 0.025rem solid #00bcd4;
+}
+body .container main.content .skill .right .progress-bar .php {
+  background: #ffeb3b;
+  animation: php 3s linear forwards;
+}
+body .container main.content .skill .right .progress-bar .php span {
+  border: 0.025rem solid #ffeb3b;
+}
+body .container main.content .skill .right .progress-bar .java {
+  background: #9c27b0;
+  animation: java 3s linear forwards;
+}
+body .container main.content .skill .right .progress-bar .java span {
+  border: 0.025rem solid #9c27b0;
+}
+@keyframes html {
+  100% {
+    width: 86%;
+  }
+}
+@keyframes css {
+  100% {
+    width: 74%;
+  }
+}
+@keyframes javascript {
+  100% {
+    width: 65%;
+  }
+}
+@keyframes php {
+  100% {
+    width: 86%;
+  }
+}
+@keyframes java {
+  100% {
+    width: 90%;
+  }
+}
+body .container main.content .achievement {
+  width: 100%;
+  padding: 3rem 3rem;
+  background-color: #080808;
+  font-size: 1rem;
+  background: url(../images/purple-gradient-background-2400-x-2000-84i56bd29161ta0o.jpg) center bottom;
+  background-clip: text;
+  color: transparent;
+}
+body .container main.content .achievement #achievement {
+  text-align: center;
+  font-size: 3.5rem;
+}
+body .container main.content .achievement .school {
+  display: flex;
+  padding: 1.25rem 2.5rem;
+  /* we use @media here to ensure that the boxes will not crush together and arrange vertically
+           when the width of the screen is too small so that the content in our achievement will not crush */
+}
+@media (max-height: 140rem) {
+  body .container main.content .achievement .school {
+    flex-direction: column;
+  }
+}
+body .container main.content .achievement .school .pre-u,
+body .container main.content .achievement .school .university {
+  position: relative;
+  flex: 1;
+  border-radius: 0.25rem;
+  margin: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border: white solid 0.025rem;
+  background-color: #1f1f1f;
+  color: white;
+}
+body .container main.content .achievement .school .pre-u img,
+body .container main.content .achievement .school .university img {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9rem;
+  height: 9rem;
+  margin-left: 0.375rem;
+  transition: all 0.8s;
+}
+body .container main.content .achievement .school .pre-u h2,
+body .container main.content .achievement .school .university h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  transition: all 0.7s;
+}
+body .container main.content .achievement .school .pre-u p,
+body .container main.content .achievement .school .university p {
+  font-size: 0.85rem;
+  margin: 0.8rem 0;
+  transition: all 0.7s;
+}
+body .container main.content .achievement .school .pre-u p.cgpa,
+body .container main.content .achievement .school .university p.cgpa {
+  font-size: 1.1rem;
+  margin: 2.8rem 0 0.8rem;
+  transition: all 0.8s;
+}
+body .container main.content .achievement .school .pre-u:hover,
+body .container main.content .achievement .school .university:hover {
+  border: #00bcd4 solid 0.125rem;
+  box-shadow: 0.375rem 0.375rem #00bcd4;
+  background: url(../images/360_F_129277373_HOQaWFD8bupLUvqF6NWg4dkSkR80HPzO.jpg) no-repeat right center / cover;
+  color: #3f37c9;
+}
+body .container main.content .achievement .school .pre-u:hover img,
+body .container main.content .achievement .school .university:hover img {
+  transform: translateY(-50%) scale(1.2);
+}
+body .container main.content .achievement .school .pre-u:hover .cgpa,
+body .container main.content .achievement .school .university:hover .cgpa {
+  color: #eb315a;
+  font-weight: 700;
+  transform-origin: left center;
+  transform: scale(1.2);
+}
+body .container footer.footer {
+  grid-area: 3/1/-1/-1;
+  background-color: #333;
+  padding: 0.5rem;
+  text-align: center;
+  color: white;
+}
+body .container footer.footer .container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+body .container footer.footer .container .contact,
+body .container footer.footer .container .social {
+  flex: 1;
+}
+body .container footer.footer .container .contact h3,
+body .container footer.footer .container .social h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+body .container footer.footer .container .contact a {
+  margin: 0;
+  color: white;
+  font-size: 0.75rem;
+  transition: all 0.5s;
+}
+body .container footer.footer .container .contact a:hover {
+  text-decoration: underline;
+  color: #eb315a;
+}
+body .container footer.footer .container .social ul {
+  margin-top: -0.125rem;
+}
+body .container footer.footer .container .social ul li {
+  display: inline;
+  margin-right: 0.25rem;
+  font-size: 0.75rem;
+}
+body .container footer.footer .container .social ul li:last-child {
+  margin-right: 0;
+}
+body .container footer.footer .container .social ul li a {
+  color: white;
+  transition: all 0.5s;
+}
+body .container footer.footer .container .social ul li a:hover {
+  text-decoration: underline;
+  color: #eb315a;
+}
+body .container footer.footer .legal {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+}
+body .container footer.footer .legal a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+body .container footer.footer .legal a:hover {
+  text-decoration: underline;
+  color: #eb315a;
+}
